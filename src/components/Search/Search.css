@@ -2,12 +2,6 @@
     width: 588px;
 }
 
-.search p {
-    color: #A8AEBF;
-    font-weight: 500;
-    margin-bottom: 24px;
-}
-
 .search-container {
     display: flex;
     gap: 12px;

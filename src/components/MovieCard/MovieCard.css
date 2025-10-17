@@ -71,10 +71,25 @@
     color: #7B6EF6;
 }
 
+.liked-container {
+    display: flex;
+    color: #37D8A7;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
 
+.liked-container:hover {
+    color: #31b28b;
+}
 
-.like-container img {
-    margin-right: 5px;
+.liked-container:active {
+    color: #37D8A7;
+}
+
+.info-block img {
+    margin-right: 7px;
 } 
 
 .rating-container {

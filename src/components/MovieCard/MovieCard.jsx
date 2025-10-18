@@ -1,15 +1,24 @@
+import { useState } from 'react';
 import './MovieCard.css';
-import like from './../../assets/like.svg';
-import liked from './../../assets/liked.svg';
-import star from './../../assets/star.svg';
 
 export default function MovieCard({ img, title, link, rating, isLike }) {
+  const [like, setLike] = useState(isLike);
+  const [newRating, setNewRating] = useState(Number(rating));
+  const handleLike = (e) => {
+    e.preventDefault();
+    setLike(like ? false : true);
+    setNewRating((prev) => (like ? prev - 1 : prev + 1));
+  };
   return (
-    <div className="card-container" style={{ '--poster-img': `url("${img}")` }}>
+    <div
+      className="card-container"
+      // @ts-ignore
+      style={{ '--poster-img': `url("${img}")` }}
+    >
       <div className="poster-section">
         <div className="rating-container">
-          <img src={star} alt="rating" />
-          {rating}
+          <img src="./star.svg" alt="rating" />
+          {newRating}
         </div>
         <a href={link}>
           <img className="poster" src={img} alt={title} />
@@ -19,10 +28,16 @@ export default function MovieCard({ img, title, link, rating, isLike }) {
         <a href={link}>
           <p className="title">{title}</p>
         </a>
-        
-        <a href="#" className={isLike ? "liked-container" : "like-container"}>
-          <img src={isLike ? liked : like } alt="like" />
-          <div className="like-button">{isLike ? "В избранном" : "В избранное"}</div>
+
+        <a
+          onClick={handleLike}
+          href="#"
+          className={like ? 'liked-container' : 'like-container'}
+        >
+          <img src={like ? './liked.svg' : './like.svg'} alt="like" />
+          <div className="like-button">
+            {like ? 'В избранном' : 'В избранное'}
+          </div>
         </a>
       </div>
     </div>

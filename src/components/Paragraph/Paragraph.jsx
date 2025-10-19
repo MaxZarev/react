@@ -1,4 +1,4 @@
-import './Paragraph.css';
+import './Paragraph.css'; 
 
 export default function Paragraph({ text }) {
   return (
@@ -7,3 +7,4 @@ export default function Paragraph({ text }) {
     </p>
   );
 }
+

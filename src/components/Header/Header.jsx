@@ -1,5 +1,3 @@
-import logo from '../../assets/logo.svg';
-import login from '../../assets/login.svg';
 import './Header.css'
 
 export default function Header() {
@@ -7,7 +5,7 @@ export default function Header() {
     <div className="header">
       <div className="logo">
         <a href="#" className="logo">
-          <img src={logo} alt="logo" />
+          <img src='./logo.svg' alt="logo" />
         </a>
       </div>
       <nav className="nav">
@@ -16,7 +14,7 @@ export default function Header() {
             <span className="counter">2</span>      
         </a>
         <a href="#">Войти
-            <img src={login} alt="login" />
+            <img src='./login.svg' alt="login" />
         </a>
 
       </nav>

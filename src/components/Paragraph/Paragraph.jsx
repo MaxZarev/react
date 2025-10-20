@@ -1,8 +1,8 @@
-import './Paragraph.css'; 
+import style from './Paragraph.module.css'; 
 
 export default function Paragraph({ text }) {
   return (
-    <p className='paragraph-container'>
+    <p className={style['paragraph-container']}>
       { text }
     </p>
   );

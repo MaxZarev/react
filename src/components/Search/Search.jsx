@@ -1,4 +1,4 @@
-import './Search.css';
+import style from './Search.module.css';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import Paragraph from '../Paragraph/Paragraph';
@@ -15,10 +15,10 @@ export default function Search() {
   };
 
   return (
-    <div className="search">
+    <div className={style["search"]}>
       <Paragraph text="Введите название фильма, сериала или мультфильма для поиска и добавления в избранное." />
 
-      <div className="search-container">
+      <div className={style["search-container"]}>
         <Input
           placeholder="Введите название"
           name="search"

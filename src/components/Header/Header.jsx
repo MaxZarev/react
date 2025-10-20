@@ -1,22 +1,54 @@
-import style from './Header.module.css'
+import { useState } from 'react';
+import style from './Header.module.css';
+import cn from 'classnames';
 
 export default function Header() {
+  const [activeTab, setActiveTab] = useState({
+    search: true,
+    favorite: false,
+  });
+
+  const handlerNav = (e) => {
+    e.preventDefault();
+    const tab = e.currentTarget.dataset.tab;
+    setActiveTab({
+      search: tab === 'search',
+      favorite: tab === 'favorite',
+    })
+  } 
+
   return (
     <div className={style.header}>
-      <div className={style["logo"]}>
+      <div className={style.logo}>
         <a href="#" className={style.logo}>
-          <img src='./logo.svg' alt="logo" />
+          <img src="./logo.svg" alt="logo" />
         </a>
       </div>
       <nav className={style.nav}>
-        <a href="#" className={style['active']}>Поиск фильмов</a>
-        <a href="#">Мои фильмы 
-            <span className={style.counter}>2</span>      
+        <a onClick={handlerNav}
+          data-tab='search'
+          href="#"
+          className={cn({
+            [style.active]: activeTab.search,
+          })}
+        >
+          Поиск фильмов
         </a>
-        <a href="#">Войти
-            <img src='./login.svg' alt="login" />
+        <a
+          onClick={handlerNav}
+          data-tab='favorite'
+          href="#"
+          className={cn({
+            [style.active]: activeTab.favorite,
+          })}
+        >
+          Мои фильмы
+          <span className={style.counter}>2</span>
         </a>
-
+        <a href="#">
+          Войти
+          <img src="./login.svg" alt="login" />
+        </a>
       </nav>
     </div>
   );

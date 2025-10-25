@@ -6,6 +6,7 @@ export default function Input({
   name,
   value,
   handleInput,
+  ref,
   icon = '',
 }) {
   const inputClass = cn(style.input, {
@@ -21,7 +22,10 @@ export default function Input({
         name={name}
         value={value}
         onChange={handleInput}
+        ref={ref}
       />
     </div>
   );
 }
+
+

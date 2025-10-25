@@ -2,7 +2,7 @@ import { useState } from 'react';
 import style from './Header.module.css';
 import cn from 'classnames';
 
-export default function Header() {
+export default function Header({ login, userName, onLogout }) {
   const [activeTab, setActiveTab] = useState({
     search: true,
     favorite: false,
@@ -14,8 +14,8 @@ export default function Header() {
     setActiveTab({
       search: tab === 'search',
       favorite: tab === 'favorite',
-    })
-  } 
+    });
+  };
 
   return (
     <div className={style.header}>
@@ -25,8 +25,9 @@ export default function Header() {
         </a>
       </div>
       <nav className={style.nav}>
-        <a onClick={handlerNav}
-          data-tab='search'
+        <a
+          onClick={handlerNav}
+          data-tab="search"
           href="#"
           className={cn({
             [style.active]: activeTab.search,
@@ -36,7 +37,7 @@ export default function Header() {
         </a>
         <a
           onClick={handlerNav}
-          data-tab='favorite'
+          data-tab="favorite"
           href="#"
           className={cn({
             [style.active]: activeTab.favorite,
@@ -45,10 +46,22 @@ export default function Header() {
           Мои фильмы
           <span className={style.counter}>2</span>
         </a>
-        <a href="#">
-          Войти
-          <img src="./login.svg" alt="login" />
-        </a>
+        {login ? (
+          <>
+            <a href="#">
+              <img src="./user.svg" alt="user" />
+              {userName}
+            </a>
+            <a onClick={onLogout} href="#">
+              Выйти
+            </a>
+          </>
+        ) : (
+          <a href="#">
+            Войти
+            <img src="./login.svg" alt="login" />
+          </a>
+        )}
       </nav>
     </div>
   );

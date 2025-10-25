@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import './MovieCard.css';
+import style from './MovieCard.module.css';
+import cn from 'classnames'
 
 export default function MovieCard({ img, title, link, rating, isLike }) {
   const [like, setLike] = useState(isLike);
@@ -11,31 +12,34 @@ export default function MovieCard({ img, title, link, rating, isLike }) {
   };
   return (
     <div
-      className="card-container"
+      className={style["card-container"]}
       // @ts-ignore
       style={{ '--poster-img': `url("${img}")` }}
     >
-      <div className="poster-section">
-        <div className="rating-container">
+      <div className={style["poster-section"]}>
+        <div className={style["rating-container"]}>
           <img src="./star.svg" alt="rating" />
           {newRating}
         </div>
         <a href={link}>
-          <img className="poster" src={img} alt={title} />
+          <img className={style["poster"]} src={img} alt={title} />
         </a>
       </div>
-      <div className="info-block">
+      <div className={style["info-block"]}>
         <a href={link}>
-          <p className="title">{title}</p>
+          <p className={style["title"]}>{title}</p>
         </a>
 
         <a
           onClick={handleLike}
           href="#"
-          className={like ? 'liked-container' : 'like-container'}
+          className={cn({
+            [style['like-container']]: !like,
+            [style['liked-container']]: like
+          })}
         >
           <img src={like ? './liked.svg' : './like.svg'} alt="like" />
-          <div className="like-button">
+          <div className={style["like-button"]}>
             {like ? 'В избранном' : 'В избранное'}
           </div>
         </a>

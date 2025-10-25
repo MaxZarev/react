@@ -1,11 +1,12 @@
-import './Search.css';
+import style from './Search.module.css';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import Paragraph from '../Paragraph/Paragraph';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 export default function Search() {
   const [searchInput, setSearchInput] = useState('');
+  const searchRef = useRef(null);
   const handleInput = (e) => {
     setSearchInput(e.target.value);
   };
@@ -15,15 +16,16 @@ export default function Search() {
   };
 
   return (
-    <div className="search">
+    <div className={style["search"]}>
       <Paragraph text="Введите название фильма, сериала или мультфильма для поиска и добавления в избранное." />
 
-      <div className="search-container">
+      <div className={style["search-container"]}>
         <Input
           placeholder="Введите название"
           name="search"
           value={searchInput}
           handleInput={handleInput}
+          ref={searchRef}
           icon="./search.svg"
         />
         <Button onClick={handleButton} text="Искать" />

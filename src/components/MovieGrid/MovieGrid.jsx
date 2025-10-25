@@ -1,4 +1,4 @@
-import './MovieGrid.css';
+import style from './MovieGrid.module.css';
 import MovieCard from './../MovieCard/MovieCard';
 
 export default function MovieGrid() {
@@ -64,7 +64,7 @@ export default function MovieGrid() {
   data.map(el => el.id = crypto.randomUUID())
   
   return (
-    <div className="grid-container">
+    <div className={style['grid-container']}>
       {data.map((movie) => (
         <MovieCard
           key={movie.id}
@@ -78,4 +78,3 @@ export default function MovieGrid() {
     </div>
   );
 }
-

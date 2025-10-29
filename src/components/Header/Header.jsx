@@ -1,12 +1,18 @@
 import { useState } from 'react';
 import style from './Header.module.css';
 import cn from 'classnames';
+import { useContext } from 'react';
+import UserContext from './../../context/UserContext'
 
-export default function Header({ login, userName, onLogout }) {
+export default function Header() {
   const [activeTab, setActiveTab] = useState({
     search: true,
     favorite: false,
   });
+  
+  const { userState, login, logout} = useContext(UserContext)
+
+  const {userName, isLogin} = userState;
 
   const handlerNav = (e) => {
     e.preventDefault();
@@ -46,13 +52,13 @@ export default function Header({ login, userName, onLogout }) {
           Мои фильмы
           <span className={style.counter}>2</span>
         </a>
-        {login ? (
+        {isLogin ? (
           <>
             <a href="#">
               <img src="./user.svg" alt="user" />
               {userName}
             </a>
-            <a onClick={onLogout} href="#">
+            <a onClick={logout} href="#">
               Выйти
             </a>
           </>
